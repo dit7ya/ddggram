@@ -17,13 +17,7 @@ from telegram.utils.helpers import escape_markdown
 opts = ddgr.parse_args()
 opts.keyword = ""  # TODO this is to be updated inside the loop
 opts.json = True
-# colorize = ddgr.get_colorize(opts.colorize)
-colors = (
-    # ddgr.Colors(*[ddgr.COLORMAP[c] for c in opts.colorstr], reset=ddgr.COLORMAP["x"])
-    # if colorize
-    # else None
-    None
-)
+colors = None
 ddgr.Result.colors = colors
 ddgr.Result.urlexpand = opts.expand
 ddgr.DdgCmd.colors = colors
@@ -61,7 +55,11 @@ def configure_telegram():
 
 def start(update, context):
     """Send a message when the command /start is issued."""
-    update.message.reply_text("Hi!")
+    # update.message.reply_text("Hi!")
+    context.bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Use this bot inline to get DuckDuckGo search results.",
+    )
 
 
 def help_command(update, context):
