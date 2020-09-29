@@ -12,17 +12,17 @@ from telegram import InlineQueryResultArticle, ParseMode, InputTextMessageConten
 from telegram.ext import InlineQueryHandler
 from telegram.utils.helpers import escape_markdown
 
-
 # Initialize the ddgr object. This is an ugly hack as ddgr does not provide the CLI methods in the Python module.
 
 opts = ddgr.parse_args()
-opts.keyword = ""  # TODO this is to updated inside the loop
+opts.keyword = ""  # TODO this is to be updated inside the loop
 opts.json = True
-colorize = ddgr.get_colorize(opts.colorize)
+# colorize = ddgr.get_colorize(opts.colorize)
 colors = (
-    ddgr.Colors(*[ddgr.COLORMAP[c] for c in opts.colorstr], reset=ddgr.COLORMAP["x"])
-    if colorize
-    else None
+    # ddgr.Colors(*[ddgr.COLORMAP[c] for c in opts.colorstr], reset=ddgr.COLORMAP["x"])
+    # if colorize
+    # else None
+    None
 )
 ddgr.Result.colors = colors
 ddgr.Result.urlexpand = opts.expand
@@ -88,10 +88,6 @@ def chatquery(update, context):
         ("{} <b>{}</b> \n \n" "{} \n \n" "{}").format(i, r.title, r.url, r.abstract)
         for i, r in enumerate(results)
     ]
-    # reply_msg_text = "\n\n".join(reply_msg_list)
-
-    # for r in reply_msg_list:
-    # update.message.reply_text(r)
 
 
 def inlinequery(update, context):
