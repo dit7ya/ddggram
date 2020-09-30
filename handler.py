@@ -86,6 +86,12 @@ def chatquery(update, context):
         ("{} <b>{}</b> \n \n" "{} \n \n" "{}").format(i, r.title, r.url, r.abstract)
         for i, r in enumerate(results)
     ]
+    
+    for msg in reply_msg_list:
+        update.message.reply_text(msg)
+
+    
+    
 
 
 def inlinequery(update, context):
